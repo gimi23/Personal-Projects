@@ -1,4 +1,4 @@
-package Tetris;
+package TetrisFiles;
 
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
