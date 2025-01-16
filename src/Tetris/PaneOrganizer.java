@@ -465,8 +465,8 @@ public class PaneOrganizer {
                 + "-fx-background-insets: 1px;"
                 + "-fx-border-radius: 16;"
                 + "-fx-background-radius: 16;"
-                + "-fx-border-color: #863f7e;" +
-                "-fx-background-color: #b999b6");
+                + "-fx-border-color: #a25331;" +
+                "-fx-background-color: #bf8369");
         this.root.getChildren().addAll(scorePanel, highScorePanel, nextPiecePanel);
     }
 }
