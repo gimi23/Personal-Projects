@@ -62,15 +62,15 @@ public class PaneOrganizer {
 
 
         Rectangle background2 = new Rectangle(50, 1000);
-        background2.setFill(Color.web("#4b4a4a"));
+        background2.setFill(Color.web("#414141"));
         background2.setLayoutX(0);
         background2.setLayoutY(0);
         Rectangle background3 = new Rectangle(650, 1000);
-        background3.setFill(Color.web("#4b4a4a"));
+        background3.setFill(Color.web("#414141"));
         background3.setLayoutX(550);
         background3.setLayoutY(0);
         Rectangle background4 = new Rectangle(600, 100);
-        background4.setFill(Color.web("#4b4a4a"));
+        background4.setFill(Color.web("#414141"));
         background4.setLayoutX(0);
         background4.setLayoutY(900);
         this.root.getChildren().addAll(background2, background3, background4);
@@ -79,33 +79,33 @@ public class PaneOrganizer {
             for (int j = 0; j <= 19; j++) {
                 if ((i == 0 && j <= 19) || (i >= 11 && j <= 19 ) || (i > 0 && i < 11 && j >= 18 && j <= 19)) {
                     Rectangle rectangle = new Rectangle(36, 36);
-                    rectangle.setFill(Color.web("#595959"));
+                    rectangle.setFill(Color.web("#494949"));
                     rectangle.setLayoutX(50 * i + 7);
                     rectangle.setLayoutY(50 * j + 7);
                     Line line1 = new Line(50 * i, 50 * j, 50 * i + 7, 50 * j + 7);
-                    line1.setStroke(Color.web("#363636"));
-                    Line line2 = new Line(50 * i + 50, 50 * j + 50, 50 * i + 43, 50 * j + 57);
-                    line2.setStroke(Color.web("#363636"));
+                    line1.setStroke(Color.web("#333333"));
+                    Line line2 = new Line(50 * i + 50, 50 * j + 50, 50 * i + 43, 50 * j + 43);
+                    line2.setStroke(Color.web("#333333"));
                     Line line3 = new Line(50 * i, 50 * j + 50, 50 * i + 7, 50 * j + 43);
-                    line3.setStroke(Color.web("#363636"));
-                    Line line4 = new Line(50 * i + 50, 50 * j + 50, 50 * i + 43, 50 * j + 43);
-                    line4.setStroke(Color.web("#363636"));
+                    line3.setStroke(Color.web("#333333"));
+                    Line line4 = new Line(50 * i + 50, 50 * j, 50 * i + 43, 50 * j + 7);
+                    line4.setStroke(Color.web("#333333"));
                     Line line5 = new Line(50 * i, 50 * j, 50 * i + 50, 50 * j);
-                    line5.setStroke(Color.web("#363636"));
+                    line5.setStroke(Color.web("#323131"));
                     Line line6 = new Line(50 * i , 50 * j, 50 * i, 50 * j + 50);
-                    line6.setStroke(Color.web("#363636"));
+                    line6.setStroke(Color.web("#323131"));
                     Line line7 = new Line(50 * i + 50, 50 * j, 50 * i + 50, 50 * j + 50);
-                    line7.setStroke(Color.web("#363636"));
+                    line7.setStroke(Color.web("#323131"));
                     Line line8 = new Line(50 * i , 50 * j + 50, 50 * i + 50, 50 * j + 50);
-                    line8.setStroke(Color.web("#363636"));
+                    line8.setStroke(Color.web("#323131"));
                     Line line9 = new Line(50 * i + 7, 50 * j + 7, 50 * i + 43, 50 * j + 7);
-                    line9.setStroke(Color.web("#363636"));
+                    line9.setStroke(Color.web("#373737"));
                     Line line10 = new Line(50 * i + 7, 50 * j + 7, 50 * i + 7, 50 * j + 43);
-                    line10.setStroke(Color.web("#363636"));
+                    line10.setStroke(Color.web("#373737"));
                     Line line11 = new Line(50 * i + 7, 50 * j + 43, 50 * i + 43, 50 * j + 43);
-                    line11.setStroke(Color.web("#363636"));
+                    line11.setStroke(Color.web("#373737"));
                     Line line12 = new Line(50 * i + 43, 50 * j + 7, 50 * i + 43, 50 * j + 43);
-                    line12.setStroke(Color.web("#363636"));
+                    line12.setStroke(Color.web("#373737"));
 
 
                     this.root.getChildren().addAll(rectangle, line1, line2, line3, line4,

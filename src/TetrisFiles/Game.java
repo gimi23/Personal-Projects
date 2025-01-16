@@ -10,7 +10,7 @@ public class Game {
     private Piece current;
     public Game(Pane root) {
         this.root = root;
-        this.gameBoard = new Rectangle[10][17];
+        this.gameBoard = new Rectangle[10][18];
         this.gameStart();
     }
 
