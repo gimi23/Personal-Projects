@@ -1,4 +1,4 @@
-module Tetris {
+module Tetris.tetris {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
