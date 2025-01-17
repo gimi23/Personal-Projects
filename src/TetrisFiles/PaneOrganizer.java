@@ -83,13 +83,13 @@ public class PaneOrganizer {
                     rectangle.setLayoutX(50 * i + 7);
                     rectangle.setLayoutY(50 * j + 7);
                     Line line1 = new Line(50 * i, 50 * j, 50 * i + 7, 50 * j + 7);
-                    line1.setStroke(Color.web("#333333"));
+                    line1.setStroke(Color.web("#323131"));
                     Line line2 = new Line(50 * i + 50, 50 * j + 50, 50 * i + 43, 50 * j + 43);
-                    line2.setStroke(Color.web("#333333"));
+                    line2.setStroke(Color.web("#323131"));
                     Line line3 = new Line(50 * i, 50 * j + 50, 50 * i + 7, 50 * j + 43);
-                    line3.setStroke(Color.web("#333333"));
+                    line3.setStroke(Color.web("#323131"));
                     Line line4 = new Line(50 * i + 50, 50 * j, 50 * i + 43, 50 * j + 7);
-                    line4.setStroke(Color.web("#333333"));
+                    line4.setStroke(Color.web("#323131"));
                     Line line5 = new Line(50 * i, 50 * j, 50 * i + 50, 50 * j);
                     line5.setStroke(Color.web("#323131"));
                     Line line6 = new Line(50 * i , 50 * j, 50 * i, 50 * j + 50);
@@ -99,13 +99,13 @@ public class PaneOrganizer {
                     Line line8 = new Line(50 * i , 50 * j + 50, 50 * i + 50, 50 * j + 50);
                     line8.setStroke(Color.web("#323131"));
                     Line line9 = new Line(50 * i + 7, 50 * j + 7, 50 * i + 43, 50 * j + 7);
-                    line9.setStroke(Color.web("#373737"));
+                    line9.setStroke(Color.web("#323131"));
                     Line line10 = new Line(50 * i + 7, 50 * j + 7, 50 * i + 7, 50 * j + 43);
-                    line10.setStroke(Color.web("#373737"));
+                    line10.setStroke(Color.web("#323131"));
                     Line line11 = new Line(50 * i + 7, 50 * j + 43, 50 * i + 43, 50 * j + 43);
-                    line11.setStroke(Color.web("#373737"));
+                    line11.setStroke(Color.web("#323131"));
                     Line line12 = new Line(50 * i + 43, 50 * j + 7, 50 * i + 43, 50 * j + 43);
-                    line12.setStroke(Color.web("#373737"));
+                    line12.setStroke(Color.web("#323131"));
 
 
                     this.root.getChildren().addAll(rectangle, line1, line2, line3, line4,
