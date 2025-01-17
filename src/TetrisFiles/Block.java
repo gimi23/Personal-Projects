@@ -8,10 +8,12 @@ import javafx.scene.shape.Shape;
 
 public class Block {
     private Shape individualList[];
+    private Game game;
     private Pane root;
-    public Block(double x, double y, int i, Pane root) {
+    public Block(double x, double y, int i, Pane root, Game game) {
         this.individualList = new Shape[14];
         this.root = root;
+        this.game = game;
         this.createBlock(x, y, i);
     }
 
@@ -23,7 +25,7 @@ public class Block {
             case 0:
                 border = Color.web("#833c3c");
                 fill = Color.web("#934d4d");
-                outline = Color.web("#5d1717");
+                outline = Color.web("#6d2020");
                 break;
             case 1:
                 border = Color.web("#d26722");
@@ -43,7 +45,7 @@ public class Block {
             case 4:
                 border = Color.web("#3952b0");
                 fill = Color.web("#4962c0");
-                outline = Color.web("#00176c");
+                outline = Color.web("#163197");
                 break;
             case 5:
                 border = Color.web("#a12dc2");
@@ -126,14 +128,44 @@ public class Block {
     }
 
     public boolean cannotMoveLeft() {
-        return this.individualList[0].getLayoutX() < 75;
+        if (this.individualList[0].getLayoutX() < 75) {
+            return true;
+        }
+
+        else {
+            int x = (int) ((this.individualList[0].getLayoutX() - 100) / 50);
+            int y = (int) ((this.individualList[0].getLayoutY()) / 50);
+            return !this.game.isAvailable(x, y);
+        }
     }
 
     public boolean cannotMoveRight() {
-        return this.individualList[0].getLayoutX() > 490;
+        if (this.individualList[0].getLayoutX() > 490) {
+            return true;
+        }
+        else {
+            int x = (int) ((this.individualList[0].getLayoutX()) / 50);
+            int y = (int) ((this.individualList[0].getLayoutY()) / 50);
+            return !this.game.isAvailable(x, y);
+        }
     }
 
     public boolean cannotMoveDown() {
-        return this.individualList[0].getLayoutY() > 825;
+        if (this.individualList[0].getLayoutY() > 825) {
+            return true;
+        }
+        else {
+            int x = (int) ((this.individualList[0].getLayoutX() - 50) / 50);
+            int y = (int) ((this.individualList[0].getLayoutY() + 50) / 50);
+            return !this.game.isAvailable(x, y);
+        }
+    }
+
+    public double getX() {
+        return this.individualList[0].getLayoutX();
+    }
+
+    public double getY() {
+        return this.individualList[0].getLayoutY();
     }
 }

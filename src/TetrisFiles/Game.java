@@ -1,23 +1,21 @@
 package TetrisFiles;
 
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 
 
 public class Game {
     private Pane root;
-    private Rectangle[][] gameBoard;
+    private Block[][] gameBoard;
     private Piece current;
     public Game(Pane root) {
         this.root = root;
         this.setKeyPress();
-        this.gameBoard = new Rectangle[10][18];
+        this.gameBoard = new Block[10][18];
         this.gameStart();
     }
 
     public void gameStart() {
-        this.current = new Piece(this.root);
+        this.current = new Piece(this.root, this);
     }
 
     public void setKeyPress() {
@@ -34,8 +32,18 @@ public class Game {
                 case L:
                     this.moveCurrentPiece(2);
                     break;
+
+                case I:
+                    this.speedDown();
+                    break;
             }
         });
+    }
+
+    public void speedDown() {
+        while (this.current.canMove()) {
+            this.current.moveDown();
+        }
     }
 
     public void moveCurrentPiece(int i) {
@@ -52,5 +60,28 @@ public class Game {
                 this.current.moveRight();
                 break;
         }
+    }
+
+    public void moveCurrentDown() {
+        if (this.current.canMove()) {
+            this.current.moveDown();
+        }
+
+        else {
+            this.current.setLocation();
+            this.current = new Piece(this.root, this);
+        }
+    }
+
+    public void setAvailability(Block block, int x, int y) {
+        this.gameBoard[x][y] = block;
+    }
+
+    public void setNullity(int x, int y) {
+        this.gameBoard[x][y] = null;
+    }
+
+    public boolean isAvailable(int x, int y) {
+        return this.gameBoard[x][y] == null;
     }
 }

@@ -1,6 +1,8 @@
 package TetrisFiles;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -24,6 +26,7 @@ public class PaneOrganizer {
     private double scoreY;
     private double highX;
     private double highY;
+    private Timeline timeline;
     public PaneOrganizer() {
         this.pixel = Font.loadFont("file:/C:/Users/porte/Desktop/Broken Console Bold.ttf", 23);
         this.pauseBackground = new Rectangle(1200, 1000);
@@ -37,7 +40,18 @@ public class PaneOrganizer {
         this.createResume();
         this.createScore();
         this.createButtons();
+        this.createTimeline();
         this.game = new Game(this.root);
+    }
+
+    public void createTimeline() {
+        this.timeline = new Timeline();
+        this.timeline.setCycleCount(Timeline.INDEFINITE);
+        KeyFrame keyframe = new KeyFrame(Duration.millis(800), event-> {
+            this.game.moveCurrentDown();
+        });
+        this.timeline.getKeyFrames().add(keyframe);
+        this.timeline.play();
     }
 
     public Pane getRoot() {
@@ -281,6 +295,7 @@ public class PaneOrganizer {
             this.highScorePanel.setLayoutY(highY);
             pause.setDisable(false);
             reset.setDisable(false);
+            this.timeline.play();
             this.root.getChildren().removeAll(this.resume, this.pauseBackground);
         });
 
@@ -301,6 +316,7 @@ public class PaneOrganizer {
                     this.scorePanel.setLayoutY(200);
                     this.highScorePanel.setLayoutX(335);
                     this.highScorePanel.setLayoutY(300);
+                    this.timeline.stop();
                 });
             });
         });
