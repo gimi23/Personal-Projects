@@ -28,7 +28,7 @@ public class PaneOrganizer {
     private double highY;
     private Timeline timeline;
     public PaneOrganizer() {
-        this.pixel = Font.loadFont("file:/C:/Users/porte/Desktop/Broken Console Bold.ttf", 23);
+        this.pixel = Font.loadFont("file:/C:/Users/porte/IdeaProjects/Tetris/src/TetrisFiles/Broken Console Bold.ttf", 23);
         this.pauseBackground = new Rectangle(1200, 1000);
         this.pauseBackground.setLayoutX(0);
         this.pauseBackground.setLayoutY(0);

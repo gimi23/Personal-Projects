@@ -168,4 +168,13 @@ public class Block {
     public double getY() {
         return this.individualList[0].getLayoutY();
     }
+
+    public void setNewLocation(double x, double y) {
+        for (Shape individualList : this.individualList) {
+            double a = individualList.getLayoutX();
+            double b = individualList.getLayoutY();
+            individualList.setLayoutX(a + x);
+            individualList.setLayoutY(b + y);
+        }
+    }
 }

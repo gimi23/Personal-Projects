@@ -33,8 +33,16 @@ public class Game {
                     this.moveCurrentPiece(2);
                     break;
 
-                case I:
+                case Z:
                     this.speedDown();
+                    break;
+
+                case Q:
+                    this.moveCurrentPiece(3);
+                    break;
+
+                case W:
+                    this.moveCurrentPiece(4);
                     break;
             }
         });
@@ -58,6 +66,14 @@ public class Game {
 
             case 2:
                 this.current.moveRight();
+                break;
+
+            case 3:
+                this.current.rotateLeft();
+                break;
+
+            case 4:
+                this.current.rotateRight();
                 break;
         }
     }
