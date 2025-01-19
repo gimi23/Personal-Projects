@@ -41,7 +41,7 @@ public class PaneOrganizer {
         this.createScore();
         this.createButtons();
         this.createTimeline();
-        this.game = new Game(this.root);
+        this.game = new Game(this.root, this);
     }
 
     public void createTimeline() {
@@ -50,7 +50,10 @@ public class PaneOrganizer {
         KeyFrame keyframe = new KeyFrame(Duration.millis(800), event-> {
             this.game.moveCurrentDown();
         });
-        this.timeline.getKeyFrames().add(keyframe);
+        KeyFrame keyframe2 = new KeyFrame(Duration.millis(1), event-> {
+            this.game.clearRow();
+        });
+        this.timeline.getKeyFrames().addAll(keyframe, keyframe2);
         this.timeline.play();
     }
 
@@ -484,5 +487,10 @@ public class PaneOrganizer {
                 + "-fx-border-color: #a25331;" +
                 "-fx-background-color: #bf8369");
         this.root.getChildren().addAll(scorePanel, highScorePanel, nextPiecePanel);
+    }
+
+    public void updateScore() {
+        this.score = this.score + 100;
+        this.scorePanel.setText("SCORE: " + this.score);
     }
 }

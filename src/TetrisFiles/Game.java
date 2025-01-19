@@ -1,5 +1,6 @@
 package TetrisFiles;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
 
@@ -7,7 +8,9 @@ public class Game {
     private Pane root;
     private Block[][] gameBoard;
     private Piece current;
-    public Game(Pane root) {
+    private PaneOrganizer organizer;
+    public Game(Pane root, PaneOrganizer organizer) {
+        this.organizer = organizer;
         this.root = root;
         this.setKeyPress();
         this.gameBoard = new Block[10][18];
@@ -24,25 +27,20 @@ public class Game {
                 case J:
                     this.moveCurrentPiece(0);
                     break;
-
                 case K:
                     this.moveCurrentPiece(1);
                     break;
-
                 case L:
                     this.moveCurrentPiece(2);
                     break;
-
-                case Z:
-                    this.speedDown();
-                    break;
-
-                case Q:
+                case I:
                     this.moveCurrentPiece(3);
                     break;
-
                 case W:
                     this.moveCurrentPiece(4);
+                    break;
+                case SPACE:
+                    this.speedDown();
                     break;
             }
         });
@@ -99,5 +97,41 @@ public class Game {
 
     public boolean isAvailable(int x, int y) {
         return this.gameBoard[x][y] == null;
+    }
+
+    public void clearRow() {
+        int count;
+        for (int j = 17; j >= 0; j--) {
+            count = 0;
+            for (int i = 0; i <= 9; i++) {
+                if (this.gameBoard[i][j] == null) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                for (int k = 0; k <= 9; k++) {
+                    this.gameBoard[k][j].removeBlock();
+                    this.gameBoard[k][j] = null;
+                }
+                this.shiftDown(j);
+                this.updateScore();
+            }
+        }
+    }
+
+    public void shiftDown(int j) {
+        for (int x = j - 1; x >= 0; x--) {
+            for (int y = 0; y <= 9; y++) {
+                if (this.gameBoard[y][x] != null) {
+                    this.gameBoard[y][x].setNewLocation(0, 50);
+                }
+                this.gameBoard[y][x + 1] = this.gameBoard[y][x];
+                this.gameBoard[y][x] = null;
+            }
+        }
+    }
+
+    public void updateScore() {
+        this.organizer.updateScore();
     }
 }

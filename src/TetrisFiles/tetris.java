@@ -16,6 +16,7 @@ public class tetris extends Application {
         PaneOrganizer organizer = new PaneOrganizer();
         Scene scene = new Scene(organizer.getRoot(), 1200, 1000);
         primaryStage.setScene(scene);
+        organizer.getRoot().requestFocus();
         primaryStage.show();
     }
 }

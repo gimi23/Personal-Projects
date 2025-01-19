@@ -177,4 +177,10 @@ public class Block {
             individualList.setLayoutY(b + y);
         }
     }
+
+    public void removeBlock() {
+        for (Shape individualList: this.individualList) {
+            this.root.getChildren().remove(individualList);
+        }
+    }
 }
