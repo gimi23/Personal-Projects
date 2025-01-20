@@ -4,7 +4,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -27,6 +29,8 @@ public class PaneOrganizer {
     private double highX;
     private double highY;
     private Timeline timeline;
+    private Node[] controlList;
+    private Button controls;
     public PaneOrganizer() {
         this.pixel = Font.loadFont("file:/C:/Users/porte/IdeaProjects/Tetris/src/TetrisFiles/Broken Console Bold.ttf", 23);
         this.pauseBackground = new Rectangle(1200, 1000);
@@ -36,10 +40,12 @@ public class PaneOrganizer {
         this.root = new Pane();
         this.score = 0;
         this.highScore = 0;
+        this.controlList = new Node[2];
         this.creatGameBoard();
         this.createResume();
         this.createScore();
         this.createButtons();
+        this.createControls();
         this.createTimeline();
         this.game = new Game(this.root, this);
     }
@@ -304,12 +310,9 @@ public class PaneOrganizer {
 
         pause.setOnAction(e -> {
             reset.setDisable(true);
-            scaleTransition7.play();
-            scaleTransition7.setOnFinished(event -> {
-                reverseTransition7.play();
-                reverseTransition7.setOnFinished(event1 -> {
                     this.root.getChildren().addAll(this.pauseBackground, this.resume);
                     quit.toFront();
+                    this.controls.toFront();
                     this.resume.setDisable(false);
                     quit.setLayoutX(650);
                     quit.setLayoutY(475);
@@ -320,8 +323,6 @@ public class PaneOrganizer {
                     this.highScorePanel.setLayoutX(335);
                     this.highScorePanel.setLayoutY(300);
                     this.timeline.stop();
-                });
-            });
         });
 
 
@@ -434,13 +435,187 @@ public class PaneOrganizer {
         this.resume.setDisable(true);
     }
 
+    public void createControls() {
+        this.controls = new Button("?");
+        this.controls.setPrefSize(50, 50);
+        this.controls.setLayoutX(1120);
+        this.controls.setLayoutY(20);
+
+        this.controls.setStyle("-fx-background-color: #6ea097; " +
+                "-fx-border-width: 4;" +
+                " -fx-border-color: #1b7162; " +
+                "-fx-text-fill: white;" +
+                " -fx-font-size: 25px;" +
+                "-fx-background-insets: 1px;" +
+                "-fx-border-radius: 16;" +
+                "-fx-font-family: '" + this.pixel.getFamily() + "';" +
+                "-fx-background-radius: 16;");
+
+        this.controls.setFocusTraversable(false);
+        this.root.getChildren().add(controls);
+
+        ScaleTransition scaleTransition2 = new ScaleTransition(Duration.millis(55), this.controls);
+        scaleTransition2.setByX(-0.1);
+        scaleTransition2.setByY(-0.1);
+
+
+        ScaleTransition reverseTransition2 = new ScaleTransition(Duration.millis(55), this.controls);
+        reverseTransition2.setByX(0.1);
+        reverseTransition2.setByY(0.1);
+        reverseTransition2.play();
+
+        ScaleTransition scaleTransition4 = new ScaleTransition(Duration.millis(1), this.controls);
+        scaleTransition4.setByX(-0.14);
+        scaleTransition4.setByY(-0.14);
+
+
+        ScaleTransition reverseTransition4 = new ScaleTransition(Duration.millis(1), this.controls);
+        reverseTransition4.setByX(0.14);
+        reverseTransition4.setByY(0.14);
+        reverseTransition4.play();
+
+
+        this.controls.setOnMouseEntered(mouseEvent -> {this.controls.setStyle("-fx-background-color: #2a2a2a; " +
+                "-fx-border-width: 4;" +
+                " -fx-border-color: #1b7162; " +
+                "-fx-text-fill: white;" +
+                " -fx-font-size: 25px;" +
+                "-fx-background-insets: 1px;" +
+                "-fx-border-radius: 16;" +
+                "-fx-font-family: '" + this.pixel.getFamily() + "';" +
+                "-fx-background-radius: 16;"); reverseTransition4.play();});
+
+        this.controls.setOnMouseExited(mouseEvent -> {this.controls.setStyle("-fx-background-color: #6ea097; " +
+                "-fx-border-width: 4;" +
+                " -fx-border-color: #1b7162; " +
+                "-fx-text-fill: white;" +
+                " -fx-font-size: 25px;" +
+                "-fx-background-insets: 1px;" +
+                "-fx-border-radius: 16;" +
+                "-fx-font-family: '" + this.pixel.getFamily() + "';" +
+                "-fx-background-radius: 16;"); scaleTransition4.play();});
+
+        Button exitControls = new Button("X");
+        exitControls.setPrefSize(50, 50);
+        exitControls.setLayoutX(905);
+        exitControls.setLayoutY(174);
+
+        exitControls.setStyle("-fx-background-color: #e77a7a; " +
+                " -fx-border-width:4;" +
+                " -fx-border-color: #7a3c3c;" +
+                " -fx-text-fill: white;" +
+                " -fx-font-size: 25px;" +
+                "-fx-background-insets: 1px;" +
+                "-fx-border-radius: 16;" +
+                "-fx-font-family: '" + this.pixel.getFamily() + "';" +
+                "-fx-background-radius: 16;");
+
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(55), exitControls);
+        scaleTransition.setByX(-0.1);
+        scaleTransition.setByY(-0.1);
+
+
+        ScaleTransition reverseTransition = new ScaleTransition(Duration.millis(55), exitControls);
+        reverseTransition.setByX(0.1);
+        reverseTransition.setByY(0.1);
+        reverseTransition.play();
+
+        ScaleTransition scaleTransition3 = new ScaleTransition(Duration.millis(1), exitControls);
+        scaleTransition3.setByX(-0.14);
+        scaleTransition3.setByY(-0.14);
+
+
+        ScaleTransition reverseTransition3 = new ScaleTransition(Duration.millis(1), exitControls);
+        reverseTransition3.setByX(0.14);
+        reverseTransition3.setByY(0.14);
+        reverseTransition3.play();
+
+        exitControls.setOnAction(e -> {
+            exitControls.setDisable(true);
+            this.root.getChildren().removeAll(this.pauseBackground, exitControls);
+            this.directions(2);
+            this.timeline.play();
+            exitControls.setDisable(false);
+        });
+
+        exitControls.setOnMouseEntered(mouseEvent -> {exitControls.setStyle("-fx-background-color: #2a2a2a; " +
+                " -fx-border-width:4;" +
+                " -fx-border-color: #7a3c3c;" +
+                " -fx-text-fill: white;" +
+                " -fx-font-size: 25px;" +
+                "-fx-background-insets: 1px;" +
+                "-fx-border-radius: 16;" +
+                "-fx-font-family: '" + this.pixel.getFamily() + "';" +
+                "-fx-background-radius: 16;"); reverseTransition3.play();});
+
+        exitControls.setOnMouseExited(mouseEvent -> {exitControls.setStyle("-fx-background-color: #e77a7a; " +
+                " -fx-border-width:4;" +
+                " -fx-border-color: #7a3c3c;" +
+                " -fx-text-fill: white;" +
+                " -fx-font-size: 25px;" +
+                "-fx-background-insets: 1px;" +
+                "-fx-border-radius: 16;" +
+                "-fx-font-family: '" + this.pixel.getFamily() + "';" +
+                "-fx-background-radius: 16;"); scaleTransition3.play(); this.root.requestFocus();});
+
+
+
+        Button controlPanel = new Button();
+        controlPanel.setLayoutX(270);
+        controlPanel.setLayoutY(170);
+        controlPanel.setPrefSize(700, 400);
+        controlPanel.setStyle("-fx-font-family: '" + this.pixel.getFamily() +
+                "'; -fx-font-size: 27px;" +
+                "-fx-border-width: 5;" +
+                "-fx-text-fill: white;"
+                + "-fx-background-insets: 1px;"
+                + "-fx-border-radius: 16;"
+                + "-fx-background-radius: 16;"
+                        + "-fx-border-color: #48216f;" +
+                        "-fx-background-color: #7e5f9c");
+
+        controlPanel.setText("""
+                  J: MOVE PIECE LEFT\s
+                  K: MOVE PIECE DOWN\s
+                  L: MOVE PIECE RIGHT\s
+                  I: ROTATE PIECE CLOCKWISE\s
+                  W: ROTATE PIECE COUNTER-CLOCKWISE\s
+                  SPACE BAR: MOVE PIECE ALL THE WAY DOWN\s
+                 \s""");
+        controlPanel.setAlignment(Pos.BOTTOM_LEFT);
+        this.controlList[0] = controlPanel;
+        Label control = new Label("CONTROLS");
+        this.controlList[1] = control;
+        control.setStyle("-fx-font-family: '" + this.pixel.getFamily() +
+                "'; -fx-font-size: 60px;" +
+                "-fx-text-fill: white;");
+        control.setLayoutX(450);
+        control.setLayoutY(190);
+
+
+        this.controls.setOnAction(e -> {
+            this.timeline.stop();
+            scaleTransition2.play();
+            scaleTransition2.setOnFinished(event -> {
+                reverseTransition2.play();
+                reverseTransition2.setOnFinished(event1 -> {
+                    this.root.getChildren().addAll(this.pauseBackground);
+                    this.directions(1);
+                    this.root.getChildren().add(exitControls);
+                });
+            });
+        });
+    }
+
+
+
     public void createScore() {
         this.scorePanel = new Button("SCORE: " + this.score);
         this.scorePanel.setAlignment(Pos.CENTER);
         this.scorePanel.setLayoutX(610);
-        this.scorePanel.setLayoutY(59);
+        this.scorePanel.setLayoutY(109);
         this.scoreX = 610;
-        this.scoreY = 59;
+        this.scoreY = 109;
         this.scorePanel.setPrefSize(530, 72);
         this.scorePanel.setStyle("-fx-font-family: '" + this.pixel.getFamily() +
                 "'; -fx-font-size: 35px;" +
@@ -457,9 +632,9 @@ public class PaneOrganizer {
         this.highScorePanel = new Button("HIGH SCORE: " + this.highScore);
         this.highScorePanel.setAlignment(Pos.CENTER);
         this.highScorePanel.setLayoutX(610);
-        this.highScorePanel.setLayoutY(159);
+        this.highScorePanel.setLayoutY(209);
         this.highX = 610;
-        this.highY = 159;
+        this.highY = 209;
         this.highScorePanel.setPrefSize(530, 72);
         this.highScorePanel.setStyle("-fx-font-family: '" + this.pixel.getFamily() +
                 "'; -fx-font-size: 35px;" +
@@ -492,5 +667,17 @@ public class PaneOrganizer {
     public void updateScore() {
         this.score = this.score + 100;
         this.scorePanel.setText("SCORE: " + this.score);
+    }
+
+    public void directions(int a) {
+        switch (a) {
+            case 1:
+                this.root.getChildren().addAll(this.controlList);
+            break;
+
+            case 2:
+                this.root.getChildren().removeAll(this.controlList);
+                break;
+        }
     }
 }
