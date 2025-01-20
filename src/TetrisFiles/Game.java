@@ -134,4 +134,24 @@ public class Game {
     public void updateScore() {
         this.organizer.updateScore();
     }
+
+    public boolean checkGameOver() {
+        int count = 0;
+        if (this.gameBoard[5][0] != null || this.gameBoard[5][1] != null || this.gameBoard[5][2] != null
+        || this.gameBoard[6][0] != null || this.gameBoard[6][1] != null || this.gameBoard[6][2] != null) {
+            count++;
+        }
+        return count > 0;
+    }
+
+    public void clearBoard() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 18; j++) {
+                if (this.gameBoard[i][j] != null) {
+                    this.gameBoard[i][j].removeBlock();
+                    this.gameBoard[i][j] = null;
+                }
+            }
+        }
+    }
 }
