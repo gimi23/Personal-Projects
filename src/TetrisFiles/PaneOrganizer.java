@@ -34,8 +34,10 @@ public class PaneOrganizer {
     private Button quit;
     private Button newGame;
     private Button gameOver;
+    private int pauseCounter;
     public PaneOrganizer() {
         this.pixel = Font.loadFont("file:/C:/Users/porte/IdeaProjects/Tetris/src/TetrisFiles/Broken Console Bold.ttf", 23);
+        this.pauseCounter = 0;
         this.pauseBackground = new Rectangle(1200, 1000);
         this.pauseBackground.setLayoutX(0);
         this.pauseBackground.setLayoutY(0);
@@ -216,15 +218,20 @@ public class PaneOrganizer {
             this.quit.setLayoutX(quitX);
             this.quit.setLayoutY(quitY);
             this.createNewGame();
+            this.timeline.play();
         });
     }
 
     public void createNewGame() {
-        this.game.clearBoard();
+        this.game.removeCurrentPiece();
+        this.score = 0;
+        this.scorePanel.setText("SCORE:" + this.score);
+        this.root.requestFocus();
         this.scorePanel.setLayoutX(this.scoreX);
         this.scorePanel.setLayoutY(this.scoreY);
         this.highScorePanel.setLayoutX(this.highX);
         this.highScorePanel.setLayoutY(this.highY);
+        this.game.clearBoard();
         this.timeline.play();
     }
 
@@ -387,6 +394,7 @@ public class PaneOrganizer {
         double quitX = 750;
         double quitY = 925;
         this.resume.setOnAction(e -> {
+            this.pauseCounter = 0;
             this.resume.setDisable(true);
             this.quit.setLayoutX(quitX);
             this.quit.setLayoutY(quitY);
@@ -415,6 +423,7 @@ public class PaneOrganizer {
                     this.highScorePanel.setLayoutX(335);
                     this.highScorePanel.setLayoutY(300);
                     this.timeline.stop();
+                    this.pauseCounter++;
         });
 
 
@@ -624,9 +633,14 @@ public class PaneOrganizer {
 
         exitControls.setOnAction(e -> {
             exitControls.setDisable(true);
-            this.root.getChildren().removeAll(this.pauseBackground, exitControls);
+            if (this.pauseCounter == 0) {
+                this.root.getChildren().removeAll(this.pauseBackground, exitControls);
+                this.timeline.play();
+            }
+            else {
+                this.root.getChildren().remove(exitControls);
+            }
             this.directions(2);
-            this.timeline.play();
             exitControls.setDisable(false);
         });
 
@@ -691,7 +705,9 @@ public class PaneOrganizer {
             scaleTransition2.setOnFinished(event -> {
                 reverseTransition2.play();
                 reverseTransition2.setOnFinished(event1 -> {
-                    this.root.getChildren().addAll(this.pauseBackground);
+                    if (!this.root.getChildren().contains(this.pauseBackground)) {
+                        this.root.getChildren().addAll(this.pauseBackground);
+                    }
                     this.directions(1);
                     this.root.getChildren().add(exitControls);
                 });

@@ -232,4 +232,10 @@ public class Piece {
             }
         }
     }
+
+    public void removeBlocks() {
+        for (Block member : this.members) {
+            member.removeBlock();
+        }
+    }
 }

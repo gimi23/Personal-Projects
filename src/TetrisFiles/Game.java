@@ -1,6 +1,5 @@
 package TetrisFiles;
 
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
 
@@ -149,9 +148,13 @@ public class Game {
             for (int j = 0; j < 18; j++) {
                 if (this.gameBoard[i][j] != null) {
                     this.gameBoard[i][j].removeBlock();
-                    this.gameBoard[i][j] = null;
                 }
+                this.gameBoard[i][j] = null;
             }
         }
+    }
+
+    public void removeCurrentPiece() {
+        this.current.removeBlocks();
     }
 }
