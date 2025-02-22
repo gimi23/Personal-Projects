@@ -82,16 +82,14 @@ public class Game {
 
         else {
             this.current.setLocation();
-            this.current = new Piece(this.root, this);
+            if (!this.checkGameOver()) {
+                this.current = new Piece(this.root, this);
+            }
         }
     }
 
     public void setAvailability(Block block, int x, int y) {
         this.gameBoard[x][y] = block;
-    }
-
-    public void setNullity(int x, int y) {
-        this.gameBoard[x][y] = null;
     }
 
     public boolean isAvailable(int x, int y) {
@@ -137,7 +135,8 @@ public class Game {
     public boolean checkGameOver() {
         int count = 0;
         if (this.gameBoard[5][0] != null || this.gameBoard[5][1] != null || this.gameBoard[5][2] != null
-        || this.gameBoard[6][0] != null || this.gameBoard[6][1] != null || this.gameBoard[6][2] != null) {
+        || this.gameBoard[6][0] != null || this.gameBoard[6][1] != null || this.gameBoard[6][2] != null
+        || this.gameBoard[5][3] != null || this.gameBoard[6][3] != null) {
             count++;
         }
         return count > 0;

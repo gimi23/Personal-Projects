@@ -147,20 +147,6 @@ public class PaneOrganizer {
                 }
             }
         }
-        Rectangle nextPieceBackground = new Rectangle(250, 250);
-        nextPieceBackground.setLayoutX(750);
-        nextPieceBackground.setLayoutY(500);
-        nextPieceBackground.setFill(Color.web("#030303"));
-        this.root.getChildren().add(nextPieceBackground);
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                Rectangle filling = new Rectangle (48,48);
-                filling.setFill(Color.web("#000000"));
-                filling.setLayoutX(50 * i + 752);
-                filling.setLayoutY(50 * j + 502);
-                this.root.getChildren().add(filling);
-            }
-        }
     }
 
     public void createNewGameButton() {
@@ -189,7 +175,7 @@ public class PaneOrganizer {
         reverseTransition3.setByY(0.14);
         reverseTransition3.play();
 
-        newGame.setOnMouseEntered(e -> {this.newGame.setStyle("-fx-background-color: #2a2a2a; " +
+        this.newGame.setOnMouseEntered(e -> {this.newGame.setStyle("-fx-background-color: #2a2a2a; " +
                 " -fx-border-width:4;" +
                 " -fx-border-color: #1c2ccc;" +
                 " -fx-text-fill: white;" +
@@ -200,7 +186,7 @@ public class PaneOrganizer {
                 "-fx-background-radius: 16;"); reverseTransition3.play();
         });
 
-        newGame.setOnMouseExited(e -> {this.newGame.setStyle("-fx-background-color: #6675ff; " +
+        this.newGame.setOnMouseExited(e -> {this.newGame.setStyle("-fx-background-color: #6675ff; " +
                 " -fx-border-width:4;" +
                 " -fx-border-color: #1c2ccc;" +
                 " -fx-text-fill: white;" +
@@ -211,7 +197,7 @@ public class PaneOrganizer {
                 "-fx-background-radius: 16;"); scaleTransition3.play();
         });
 
-        newGame.setOnMouseClicked(e -> {
+        this.newGame.setOnMouseClicked(e -> {
             this.root.getChildren().removeAll(this.newGame, this.gameOver, this.pauseBackground);
             double quitX = 750;
             double quitY = 925;
@@ -233,6 +219,7 @@ public class PaneOrganizer {
         this.highScorePanel.setLayoutY(this.highY);
         this.game.clearBoard();
         this.timeline.play();
+        this.game.gameStart();
     }
 
     public void createButtons() {
@@ -721,9 +708,9 @@ public class PaneOrganizer {
         this.scorePanel = new Button("SCORE: " + this.score);
         this.scorePanel.setAlignment(Pos.CENTER);
         this.scorePanel.setLayoutX(610);
-        this.scorePanel.setLayoutY(109);
+        this.scorePanel.setLayoutY(309);
         this.scoreX = 610;
-        this.scoreY = 109;
+        this.scoreY = 309;
         this.scorePanel.setPrefSize(530, 72);
         this.scorePanel.setStyle("-fx-font-family: '" + this.pixel.getFamily() +
                 "'; -fx-font-size: 35px;" +
@@ -740,9 +727,9 @@ public class PaneOrganizer {
         this.highScorePanel = new Button("HIGH SCORE: " + this.highScore);
         this.highScorePanel.setAlignment(Pos.CENTER);
         this.highScorePanel.setLayoutX(610);
-        this.highScorePanel.setLayoutY(209);
+        this.highScorePanel.setLayoutY(409);
         this.highX = 610;
-        this.highY = 209;
+        this.highY = 409;
         this.highScorePanel.setPrefSize(530, 72);
         this.highScorePanel.setStyle("-fx-font-family: '" + this.pixel.getFamily() +
                 "'; -fx-font-size: 35px;" +
@@ -754,22 +741,7 @@ public class PaneOrganizer {
                 + "-fx-border-color: #c5a100;" +
                 "-fx-background-color: #e1cb69");
 
-
-        Button nextPiecePanel = new Button("NEXT PIECE");
-        nextPiecePanel.setAlignment(Pos.CENTER);
-        nextPiecePanel.setLayoutX(710);
-        nextPiecePanel.setLayoutY(409);
-        nextPiecePanel.setPrefSize(330, 72);
-        nextPiecePanel.setStyle("-fx-font-family: '" + this.pixel.getFamily() +
-                "'; -fx-font-size: 35px;" +
-                "-fx-border-width: 5;" +
-                "-fx-text-fill: white;"
-                + "-fx-background-insets: 1px;"
-                + "-fx-border-radius: 16;"
-                + "-fx-background-radius: 16;"
-                + "-fx-border-color: #a25331;" +
-                "-fx-background-color: #bf8369");
-        this.root.getChildren().addAll(scorePanel, highScorePanel, nextPiecePanel);
+        this.root.getChildren().addAll(scorePanel, highScorePanel);
     }
 
     public void updateScore() {
@@ -796,6 +768,7 @@ public class PaneOrganizer {
                 this.highScore = this.score;
             }
             this.highScorePanel.setText("HIGH SCORE: " + this.highScore);
+            this.pauseCounter++;
             this.root.getChildren().addAll(this.pauseBackground, this.newGame, this.gameOver);
             this.quit.toFront();
             this.controls.toFront();
