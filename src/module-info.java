@@ -1,8 +1,8 @@
-module Tetris.tetris {
+module TetrisFiles.tetris {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
 
-    exports Tetris;
+    exports TetrisFiles;
 }
