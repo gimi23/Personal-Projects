@@ -1,8 +1,0 @@
-# Ignore IntelliJ IDEA project files
-.idea/
-
-# Ignore out directory (compiled files)
-out/
-
-# Ignore class files
-*.class
